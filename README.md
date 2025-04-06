@@ -76,6 +76,7 @@ sudo ip link set $INTERFACE up
 
 echo "[*] Creating MAC spoofing at boot..."
 cat <<EOF | sudo tee /etc/network/if-pre-up.d/macspoof
+
 #!/bin/bash
 /usr/bin/macchanger -r $INTERFACE
 EOF
