@@ -85,15 +85,21 @@ echo "[*] Creating MAC spoofing script for boot..."
 cat <<EOF | sudo tee /etc/network/if-pre-up.d/macspoof
 #!/bin/bash
 /usr/bin/macchanger -r $INTERFACE
+
 EOF
 
 sudo chmod +x /etc/network/if-pre-up.d/macspoof
 
 echo "[+] Setup complete."
+
 echo "[i] To use Tor + Proxychains: run commands like"
+
 echo "    proxychains curl https://ifconfig.me"
+
 echo "    proxychains firefox"
+
 echo "    proxychains nmap -sT target.com"
+
 echo "[i] Tor will auto-start at boot, and MAC will be spoofed on interface $INTERFACE"
 
 ________________________________________________________________________________________
