@@ -82,44 +82,7 @@ If it connects, you’re golden.
 🧭 STEP 4: Mode Switcher Script (Choose: VPN / Tor / Direct)
 🧠 network-mode.sh
 _________________________________________________________________________________________________
-#!/bin/bash
-
-echo "=== Network Mode Switcher ==="
-echo "1. Tor Mode (proxychains)"
-echo "2. VPN Mode (OpenVPN)"
-echo "3. Direct Mode (No VPN or Tor)"
-echo "4. Check External IP"
-echo "5. Exit"
-read -p "Choose your mode: " mode
-
-case $mode in
-  1)
-    echo "[*] Starting Tor..."
-    sudo systemctl start tor
-    echo "Use commands like: proxychains curl https://ifconfig.me"
-    ;;
-  2)
-    read -p "Enter path to your .ovpn file: " vpnfile
-    echo "[*] Connecting to VPN..."
-    sudo openvpn --config "$vpnfile"
-    ;;
-  3)
-    echo "[*] Disabling Tor & VPN..."
-    sudo systemctl stop tor
-    echo "Manually stop OpenVPN with Ctrl+C if running"
-    ;;
-  4)
-    echo "[*] Checking IP with Tor (proxychains)..."
-    proxychains curl https://ifconfig.me
-    ;;
-  5)
-    echo "Bye 🫡"
-    exit 0
-    ;;
-  *)
-    echo "Invalid choice."
-    ;;
-esac
+Script In folder
 ____________________________________________________________
 📁 STEP 5: Folder Structure (Your lab gear)
 _____________________________________________________________
