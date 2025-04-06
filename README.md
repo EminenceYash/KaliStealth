@@ -50,59 +50,8 @@ When done, reboot, log in as kali
 🧰 STEP 2: Setup Script (Run This First)
 🔧 kali-setup.sh
 _____________________________________________________________________________________________________________
-#!/bin/bash
-
-echo "[*] Updating system and installing tools..."
-sudo apt update && sudo apt install -y \
-  tor \
-  proxychains4 \
-  macchanger \
-  openvpn \
-  curl \
-  wget \
-  net-tools
-
-echo "[*] Enabling Tor to start on boot..."
-sudo systemctl enable tor
-
-echo "[*] Configuring Proxychains to use Tor..."
-
-sudo sed -i 's/^#dynamic_chain/dynamic_chain/' /etc/proxychains.conf
-sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
-sudo sed -i 's/^proxy_dns/proxy_dns/' /etc/proxychains.conf
-sudo sed -i 's/^# socks4 127.0.0.1 9050/# socks4 127.0.0.1 9050/' /etc/proxychains.conf
-sudo sed -i 's/^# socks5 127.0.0.1 9050/socks5 127.0.0.1 9050/' /etc/proxychains.conf
-
-echo "[*] Setting up MAC spoofing on eth0 (you can change this interface)..."
-
-INTERFACE="eth0"
-sudo ip link set $INTERFACE down
-sudo macchanger -r $INTERFACE
-sudo ip link set $INTERFACE up
-
-echo "[*] Creating MAC spoofing script for boot..."
-
-cat <<EOF | sudo tee /etc/network/if-pre-up.d/macspoof
-#!/bin/bash
-/usr/bin/macchanger -r $INTERFACE
-
-EOF
-
-sudo chmod +x /etc/network/if-pre-up.d/macspoof
-
-echo "[+] Setup complete."
-
-echo "[i] To use Tor + Proxychains: run commands like"
-
-echo "    proxychains curl https://ifconfig.me"
-
-echo "    proxychains firefox"
-
-echo "    proxychains nmap -sT target.com"
-
-echo "[i] Tor will auto-start at boot, and MAC will be spoofed on interface $INTERFACE"
-
-________________________________________________________________________________________
+Script Named In folder (with explanation)
+__________________________________________________________________________________________________________
 
 🧃 STEP 3: VPN Config (ProtonVPN – Free & Easy)
 A. Register ProtonVPN free account
