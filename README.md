@@ -66,6 +66,7 @@ echo "[*] Enabling Tor to start on boot..."
 sudo systemctl enable tor
 
 echo "[*] Configuring Proxychains to use Tor..."
+
 sudo sed -i 's/^#dynamic_chain/dynamic_chain/' /etc/proxychains.conf
 sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
 sudo sed -i 's/^proxy_dns/proxy_dns/' /etc/proxychains.conf
