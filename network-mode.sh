@@ -29,7 +29,7 @@ case $mode in
     proxychains curl https://ifconfig.me
     ;;
   5)
-    echo "Bye 👋"
+    echo "Bye and new better version with gui mode coming soon ask faqs at my dm."
     exit 0
     ;;
   *)
